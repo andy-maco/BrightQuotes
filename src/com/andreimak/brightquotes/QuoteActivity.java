@@ -28,7 +28,7 @@ public class QuoteActivity extends ActionBarActivity {
 		mPickedQuote = mIntentStarted.getStringExtra(QuotesListActivity.TAG_QUOTE);
 		
 		TextView mTextViewQouteText = (TextView) findViewById(R.id.tvQuoteText);
-		mTextViewQouteText.setText("\"" + mPickedQuote + "\"");
+		mTextViewQouteText.setText(mPickedQuote);
 	}
 
 	/**

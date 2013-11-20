@@ -24,18 +24,16 @@ public class AuthorsListActivity extends ActionBarActivity {
 
 	protected static final String TAG_AUTHOR = "tag author";
 
-	private static final String JSON_URL = "bright_quotes.json";
-	private static final String JSON_AUTHORS_ARRAY = "authors";
-	private static final String JSON_AUTHOR = "authorName";
-	private static final String JSON_IMAGE = "image";
-	private static final String JSON_QUOTES = "quotes";
+	protected static final String JSON_URL = "bright_quotes.json";
+	protected static final String JSON_AUTHORS_ARRAY = "authors";
+	protected static final String JSON_AUTHOR = "authorName";
+	protected static final String JSON_IMAGE = "image";
+	protected static final String JSON_QUOTES = "quotes";
 
 	/* Constant keys for HashMap */
 	protected static final String KEY_AUTHOR_NAME = "author_name";
 	protected static final String KEY_AUTHOR_IMAGE = "author_image";
 	protected static final String KEY_QUOTES_QUANTITY = "quotes_quantity";
-
-	String[] quoteAuthors;
 
 	List<HashMap<String, String>> qAuthors = new ArrayList<HashMap<String, String>>();
 
@@ -90,8 +88,8 @@ public class AuthorsListActivity extends ActionBarActivity {
 		JSONParser jParser = new JSONParser();
 
 		// getting JSON string from URL
-		JSONObject jObject = jParser.getJSONFromAsset(getApplicationContext(),
-				JSON_URL);
+		JSONObject jObject = jParser.getJSONFromRaw(getApplicationContext(),
+				R.raw.bright_quotes);
 
 		JSONArray jArray = null;
 		try {

@@ -1,5 +1,13 @@
 package com.andreimak.brightquotes;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -21,6 +29,12 @@ import android.widget.ListView;
 public class QuotesListActivity extends ActionBarActivity {
 
 	protected final static String TAG_QUOTE = "tag quote";
+	
+	/* Constant keys for HashMap */
+	protected static final String KEY_QUOTE_TEXT = "quote_text";
+
+
+	List<HashMap<String, String>> qList = new ArrayList<HashMap<String, String>>();
 
 	private String mPickedAuthor;
 	private int mPickedAuthorArray;
@@ -29,13 +43,26 @@ public class QuotesListActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		/* --- Read author from parent intent --- */
+		//Read author from parent intent
 		Intent mIntentStarted = getIntent();
 		mPickedAuthor = mIntentStarted.getStringExtra(AuthorsListActivity.TAG_AUTHOR);
 		
+		qList = getQuotes(AuthorsListActivity.JSON_URL, R.raw.bright_quotes, mPickedAuthor);
+		
+		final QuotesArrayAdapter mArrayAdapter = new QuotesArrayAdapter(this,
+				qList);
+		
+		setContentView(R.layout.activity_quotes_list);
+		ListView mListView = (ListView)findViewById(R.id.lvQuotes);
+		
+		// Set the ArrayAdapter as the ListView's adapter.
+		mListView.setAdapter(mArrayAdapter);
+		mListView.setTextFilterEnabled(true);
+		
+		/*
 		mPickedAuthorArray = getResources().getIdentifier(mPickedAuthor.replaceAll("\\s+",""), "array", getPackageName());
 
-		/* --- Choose and load xml file for picked author --- */
+		//Choose and load xml file for picked author
 		Resources mResources = getResources();
 		String[] quoteList = mResources.getStringArray(mPickedAuthorArray);
 
@@ -52,6 +79,8 @@ public class QuotesListActivity extends ActionBarActivity {
 		mListView.setAdapter(mArrayAdapter);
 				
 		mListView.setTextFilterEnabled(true);
+		
+		*/
 
 		/* --- Making list clickable --- */
 		mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -105,6 +134,72 @@ public class QuotesListActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	/**
+	 * Method for read JSON and save into List of HashMaps
+	 * 
+	 * @param url
+	 * @return
+	 */
+	private ArrayList<HashMap<String, String>> getQuotes(String url, int ResID, String pickedAuthor) {
+
+		// Creating JSON Parser instance
+		JSONParser jParser = new JSONParser();
+
+		// getting JSON string from URL
+		JSONObject jObject = jParser.getJSONFromRaw(getApplicationContext(), ResID);
+
+		JSONArray jArray = null;
+		try {
+			jArray = jObject.getJSONArray(AuthorsListActivity.JSON_AUTHORS_ARRAY);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		String[] Authors = new String[jArray.length()];
+		ArrayList<HashMap<String, String>> mQuotesList = new ArrayList<HashMap<String, String>>();
+
+		for (int i = 0; i < jArray.length(); i++) {
+			try {
+
+				JSONObject oneObject = jArray.getJSONObject(i);
+				// Pulling items from the array
+				Authors[i] = oneObject.getString(AuthorsListActivity.JSON_AUTHOR);
+
+				if (Authors[i].equals(pickedAuthor)) {
+					JSONArray subArray = oneObject.getJSONArray(AuthorsListActivity.JSON_QUOTES);
+					for (int j = 0; j < subArray.length(); j++)
+
+						/*
+						 * -----------------
+						 */
+						mQuotesList.add(putData(oneObject.getString(AuthorsListActivity.JSON_AUTHOR),
+								oneObject.getString(AuthorsListActivity.JSON_IMAGE),
+								"" + subArray.length()));
+				}
+				//JSONArray subArray = oneObject.getJSONArray(AuthorsListActivity.JSON_QUOTES);
+
+
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return mQuotesList;
+	}
+
+	/**
+	 * Method save quote data into several HashMap
+	 * 
+	 * @param text
+	 * @return
+	 */
+	private HashMap<String, String> putData(String text) {
+		HashMap<String, String> item = new HashMap<String, String>();
+		item.put(KEY_QUOTE_TEXT, text);
+		return item;
 	}
 
 }

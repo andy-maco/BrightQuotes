@@ -119,7 +119,39 @@ public class JSONParser {
 
         // return JSON String
         return jObj;
+    }
+ 
+    
+	/**
+	 * Read JSON from raw resources
+	 * 
+	 * http://stackoverflow.com/questions/6349759/using-json-file-in-android-app-resources
+	 * 
+	 * @param context
+	 * @param url
+	 * @return
+	 */
+    public JSONObject getJSONFromRaw(Context context,int ResID) {
+        try {
+            InputStream is = context.getResources().openRawResource(ResID);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
 
+        } catch (IOException ex) {
+        	Log.e("JSON Parser", "Error parsing data " + ex.toString());
+        }
+        
+     // try parse the string to a JSON object
+        try {
+            jObj = new JSONObject(json);
+        } catch (JSONException ex) {
+            Log.e("JSON Parser", "Error parsing data " + ex.toString());
+        }
 
+        // return JSON String
+        return jObj;
     }
 }

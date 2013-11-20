@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="authors">
+        <item>Mark Twain</item>
+        <item>Oscar Wilde</item>
+        <item>Albert Einstein</item>
+        <item>Steve Jobs</item> 
+        <item>Wayne Gretzky</item>
+        <item>Winston Churchill</item>
+    </string-array>
+    
+    <string-array name="MarkTwain">
+        <item>1. Total abstinence is so excellent a thing that it cannot be carried to too great an extent. In my passion for it I even carry it so far as to totally abstain from total abstinence itself.</item>
+        <item>2. Life would be infinitely happier if we could only be born at the age of eighty and gradually approach eighteen.</item>
+        <item>3. The average American may not know who his grandfather was. But the American was, however, one degree better off than the average Frenchman who, as a rule, was in considerable doubt as to who his father was.</item>
+    </string-array>
+    
+    <string-array name="OscarWilde">
+        <item>1. Be yourself; everyone else is already taken.</item>
+        <item>2. Always forgive your enemies; nothing annoys them so much.</item>
+    </string-array>
+    
+    <string-array name="AlbertEinstein">
+        <item>1. Бесконечны лишь Вселенная и глупость человеческая. Хотя насчет первой у меня имеются сомнения.</item>
+        <item>2. Strive not to be a success, but rather to be of value.</item>
+    </string-array>
+    
+    <string-array name="SteveJobs">
+        <item>1. Your time is limited, so don’t waste it living someone else’s life.</item>
+    </string-array> 
+    
+    <string-array name="WayneGretzky">
+        <item>1. You miss 100% of the shots you don’t take.</item>
+    </string-array>
+    
+    <string-array name="WinstonChurchill">
+        <item>1. If you have ten thousand regulations, you destroy all respect for the law.</item>
+    </string-array>
+
+
+</resources>

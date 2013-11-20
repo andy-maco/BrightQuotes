@@ -8,7 +8,6 @@ import java.util.List;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,22 +38,23 @@ public class AuthorsArrayAdapter extends ArrayAdapter<HashMap<String, String>> {
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.row_author, parent, false);
-		
-		TextView textView1 = (TextView) rowView.findViewById(R.id.tvFirstLine);
-		TextView textView2 = (TextView) rowView.findViewById(R.id.tvSecondLine);
-		ImageView imageView = (ImageView) rowView.findViewById(R.id.ivIcon);
+
+		TextView tv1 = (TextView) rowView.findViewById(R.id.tvFirstLine);
+		TextView tv2 = (TextView) rowView.findViewById(R.id.tvSecondLine);
+		ImageView iv = (ImageView) rowView.findViewById(R.id.ivIcon);
 
 		HashMap<String, String> currentValue = values.get(position);
 
-		textView1.setText(currentValue.get(AuthorsListActivity.KEY_AUTHOR_NAME));
-		textView2.setText("Quotes: " + currentValue.get(AuthorsListActivity.KEY_QUOTES_QUANTITY));
-		
-		Log.d("IMAGE", currentValue.get(AuthorsListActivity.KEY_AUTHOR_IMAGE));
-		
-		if (currentValue.get(AuthorsListActivity.KEY_AUTHOR_IMAGE).equals("none")) {
-			imageView.setImageResource(R.drawable.avatar);
+		tv1.setText(currentValue.get(AuthorsListActivity.KEY_AUTHOR_NAME));
+		tv2.setText(context.getString(R.string.authors_list_quotes_quantity)
+				+ " "
+				+ currentValue.get(AuthorsListActivity.KEY_QUOTES_QUANTITY));
+
+		if (currentValue.get(AuthorsListActivity.KEY_AUTHOR_IMAGE).equals(
+				"none")) {
+			iv.setImageResource(R.drawable.avatar);
 		} else {
-			imageView.setImageDrawable(getImageFromAsset(context,
+			iv.setImageDrawable(getImageFromAsset(context,
 					currentValue.get(AuthorsListActivity.KEY_AUTHOR_IMAGE)));
 		}
 

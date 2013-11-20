@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:padding="6dp" >
+    android:layout_height="?android:attr/listPreferredItemHeight" >
 
     <TextView
         android:id="@+id/tvQuoteNum"
         android:layout_width="35dp"
         android:layout_height="26dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
         android:ellipsize="marquee"
+        android:gravity="center_vertical|center_horizontal"
         android:singleLine="true"
         android:text="1"
         android:textSize="18sp" />
@@ -39,5 +40,17 @@
         android:gravity="center_vertical"
         android:text="Example application"
         android:textSize="16sp" />
+    
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutLeftLine"
+            android:layout_width="4dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/gray"
+            android:orientation="vertical" >
+
+    </RelativeLayout>
 
 </RelativeLayout>
