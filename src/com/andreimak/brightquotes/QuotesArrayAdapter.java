@@ -35,13 +35,15 @@ public class QuotesArrayAdapter extends ArrayAdapter<HashMap<String, String>> {
 
 		TextView tv1 = (TextView) rowView.findViewById(R.id.tvQuoteLine);
 		TextView tv2 = (TextView) rowView.findViewById(R.id.tvQuoteTagLine);
+		TextView tv3 = (TextView) rowView.findViewById(R.id.tvQuoteNum);
 
 		HashMap<String, String> currentValue = values.get(position);
 
-		tv1.setText(currentValue.get(AuthorsListActivity.KEY_AUTHOR_NAME));
-		tv2.setText(context.getString(R.string.authors_list_quotes_quantity)
-				+ " "
-				+ currentValue.get(AuthorsListActivity.KEY_QUOTES_QUANTITY));
+		tv1.setText(currentValue.get(QuotesListActivity.KEY_QUOTE_TEXT));
+		tv2.setText("Tags:");
+		
+		int quoteNum = position + 1;
+		tv3.setText(quoteNum + "");
 
 		return rowView;
 	}

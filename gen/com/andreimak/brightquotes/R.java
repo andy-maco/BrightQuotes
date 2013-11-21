@@ -803,13 +803,14 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f070002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f080014;
+        public static final int abc_search_url_text_holo=0x7f080015;
         public static final int abc_search_url_text_normal=0x7f080000;
         public static final int abc_search_url_text_pressed=0x7f080002;
         public static final int abc_search_url_text_selected=0x7f080001;
         public static final int aqua=0x7f08000c;
         public static final int black=0x7f080012;
         public static final int blue=0x7f080010;
+        public static final int darkblue=0x7f080014;
         public static final int fuchsia=0x7f080005;
         public static final int gray=0x7f080008;
         public static final int green=0x7f08000f;
@@ -1009,7 +1010,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f060045;
-        public static final int RelativeLayoutLeftLine=0x7f06004f;
+        public static final int RelativeLayoutLeftLine=0x7f06004d;
         public static final int action_bar=0x7f06001a;
         public static final int action_bar_activity_content=0x7f060015;
         public static final int action_bar_container=0x7f060019;
@@ -1023,7 +1024,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f06002f;
         public static final int action_mode_bar_stub=0x7f06002e;
         public static final int action_mode_close_button=0x7f060022;
-        public static final int action_settings=0x7f060050;
+        public static final int action_settings=0x7f06004e;
         public static final int activity_chooser_view_content=0x7f060023;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1042,7 +1043,7 @@ containing a value of this type.
         public static final int icon=0x7f060028;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060025;
-        public static final int ivIcon=0x7f060049;
+        public static final int ivIcon=0x7f060047;
         public static final int left_icon=0x7f060031;
         public static final int linearLayout1=0x7f060043;
         public static final int listMode=0x7f060001;
@@ -1078,14 +1079,12 @@ containing a value of this type.
         public static final int title=0x7f060029;
         public static final int title_container=0x7f060030;
         public static final int top_action_bar=0x7f06001e;
-        public static final int tvAuthor=0x7f060047;
-        public static final int tvFirstLine=0x7f06004b;
-        public static final int tvQuote=0x7f060048;
-        public static final int tvQuoteLine=0x7f06004e;
-        public static final int tvQuoteNum=0x7f06004c;
-        public static final int tvQuoteTagLine=0x7f06004d;
+        public static final int tvFirstLine=0x7f060049;
+        public static final int tvQuoteLine=0x7f06004c;
+        public static final int tvQuoteNum=0x7f06004a;
+        public static final int tvQuoteTagLine=0x7f06004b;
         public static final int tvQuoteText=0x7f060044;
-        public static final int tvSecondLine=0x7f06004a;
+        public static final int tvSecondLine=0x7f060048;
         public static final int up=0x7f06001f;
         public static final int useLogo=0x7f060003;
         public static final int withText=0x7f06000c;
@@ -1143,11 +1142,9 @@ containing a value of this type.
         public static final int activity_authors_list=0x7f030018;
         public static final int activity_quote=0x7f030019;
         public static final int activity_quotes_list=0x7f03001a;
-        public static final int list_row_author=0x7f03001b;
-        public static final int list_row_quote=0x7f03001c;
-        public static final int row_author=0x7f03001d;
-        public static final int row_quote=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
+        public static final int row_author=0x7f03001b;
+        public static final int row_quote=0x7f03001c;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
     }
     public static final class menu {
         public static final int bright_quotes=0x7f0e0000;

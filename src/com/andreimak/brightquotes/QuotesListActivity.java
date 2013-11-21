@@ -10,17 +10,16 @@ import org.json.JSONObject;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 /**
@@ -87,7 +86,7 @@ public class QuotesListActivity extends ActionBarActivity {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 
-				String pickedQuote = mArrayAdapter.getItem(position);
+				String pickedQuote = mArrayAdapter.getItem(position).get(KEY_QUOTE_TEXT);
 
 				Intent mIntent = new Intent(getApplicationContext(),
 						QuoteActivity.class);
@@ -143,6 +142,8 @@ public class QuotesListActivity extends ActionBarActivity {
 	 * @return
 	 */
 	private ArrayList<HashMap<String, String>> getQuotes(String url, int ResID, String pickedAuthor) {
+		
+		ArrayList<HashMap<String, String>> mQuotesList = new ArrayList<HashMap<String, String>>();
 
 		// Creating JSON Parser instance
 		JSONParser jParser = new JSONParser();
@@ -158,7 +159,6 @@ public class QuotesListActivity extends ActionBarActivity {
 		}
 
 		String[] Authors = new String[jArray.length()];
-		ArrayList<HashMap<String, String>> mQuotesList = new ArrayList<HashMap<String, String>>();
 
 		for (int i = 0; i < jArray.length(); i++) {
 			try {
@@ -167,20 +167,31 @@ public class QuotesListActivity extends ActionBarActivity {
 				// Pulling items from the array
 				Authors[i] = oneObject.getString(AuthorsListActivity.JSON_AUTHOR);
 
-				if (Authors[i].equals(pickedAuthor)) {
+				if (Authors[i].equals(pickedAuthor)) {					
 					JSONArray subArray = oneObject.getJSONArray(AuthorsListActivity.JSON_QUOTES);
-					for (int j = 0; j < subArray.length(); j++)
-
+					
+					//Log.d("ARRAY", subArray + " length" + subArray.length());
+					
+					for (int j = 0; j < subArray.length(); j++) {
+						
+						//Log.d("ARRAY_", subArray.getString(j));
+						
+						// Not objects array - parse throw getString(j)
+						mQuotesList.add(putData(subArray.getString(j)));
+						
 						/*
-						 * -----------------
-						 */
-						mQuotesList.add(putData(oneObject.getString(AuthorsListActivity.JSON_AUTHOR),
-								oneObject.getString(AuthorsListActivity.JSON_IMAGE),
-								"" + subArray.length()));
+						 * if it was array of objects (i.e. have { at begin and } at end)
+						 * 
+						JSONObject jsonData = subArray.getJSONObject(j);
+						mQuotesList.add(putData(jsonData.getString(AuthorsListActivity.JSON_QUOTES)));
+						*
+						*/
+
+					}
+					
 				}
+					
 				//JSONArray subArray = oneObject.getJSONArray(AuthorsListActivity.JSON_QUOTES);
-
-
 
 			} catch (JSONException e) {
 				e.printStackTrace();

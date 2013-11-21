@@ -1,7 +1,7 @@
 {
     "authors": [
         {
-            "authorName": "Albert Einstein",
+            "authorName": "Альберт Эйнштейн",
             "image": "img/alberteinshtein.jpg",
             "quotes": [
                 "Бесконечны лишь Вселенная и глупость человеческая. Хотя насчет первой у меня имеются сомнения.",
@@ -9,34 +9,38 @@
             ]
         },
         {
-            "authorName": "Mark Twain",
-            "image": "none",
+            "authorName": "Марк Твен",
+            "image": "img/marktwain.jpg",
             "quotes": [
                 "Total abstinence is so excellent a thing that it cannot be carried to too great an extent. In my passion for it I even carry it so far as to totally abstain from total abstinence itself.",
                 "Life would be infinitely happier if we could only be born at the age of eighty and gradually approach eighteen",
-                "The average American may not know who his grandfather was. But the American was, however, one degree better off than the average Frenchman who, as a rule, was in considerable doubt as to who his father was."
+                "The average American may not know who his grandfather was. But the American was, however, one degree better off than the average Frenchman who, as a rule, was in considerable doubt as to who his father was.",
+                "I haven't a particle of confidence in a man who has no redeeming petty vices whatsoever.",
+                "Reader, suppose you were an idiot. And suppose you were a member of Congress. But I repeat myself.",
+                "Always do right. This will gratify some people, and astonish the rest.",
+                "The citizen who thinks he sees that the commonwealth's political clothes are worn out, and yet holds his peace and does not agitate for a new suit, is disloyal, he is a traitor. That he may be the only one who thinks he sees this decay, does not excuse him: it is his duty to agitate anyway, and it is the duty of others to vote him down if they do not see the matter as he does."
             ]
         },
         {
-            "authorName": "Oscar Wilde",
-            "image": "none",
+            "authorName": "Оскар Уайлд",
+            "image": "img/oscarwilde.jpg",
             "quotes": [
                 "Be yourself; everyone else is already taken.",
                 "Always forgive your enemies; nothing annoys them so much."
             ]
         },
         {
-            "authorName": "Steve Jobs",
-            "image": "none",
+            "authorName": "Стив Джобс",
+            "image": "img/stevejobs.jpg",
             "quotes": [
-                "Your time is limited, so don�t waste it living someone else�s life."
+                "Your time is limited, so don't waste it living someone else's life."
             ]
         },
         {
             "authorName": "Wayne Gretzky",
             "image": "img/waynegretzky.jpg",
             "quotes": [
-                "You miss 100% of the shots you don�t take."
+                "You miss 100% of the shots you don't take."
             ]
         },
         {

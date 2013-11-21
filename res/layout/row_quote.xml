@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight" >
+    android:layout_height="74dp" >
 
     <TextView
         android:id="@+id/tvQuoteNum"
-        android:layout_width="35dp"
-        android:layout_height="26dp"
+        android:layout_width="36dp"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:ellipsize="marquee"
         android:gravity="center_vertical|center_horizontal"
         android:singleLine="true"
@@ -19,11 +18,15 @@
     <TextView
         android:id="@+id/tvQuoteTagLine"
         android:layout_width="fill_parent"
-        android:layout_height="26dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvQuoteLine"
         android:layout_toRightOf="@id/tvQuoteNum"
         android:ellipsize="marquee"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin_small"
+        android:paddingRight="@dimen/activity_horizontal_margin_small"
         android:singleLine="true"
         android:text="Tags"
         android:textSize="12sp" />
@@ -32,25 +35,28 @@
         android:id="@+id/tvQuoteLine"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/tvQuoteTagLine"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/tvQuoteNum"
+        android:ellipsize="end"
         android:gravity="center_vertical"
-        android:text="Example application"
-        android:textSize="16sp" />
-    
-        <RelativeLayout
-            android:id="@+id/RelativeLayoutLeftLine"
-            android:layout_width="4dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:background="@color/gray"
-            android:orientation="vertical" >
+        android:maxLines="2"
+        android:paddingLeft="@dimen/activity_horizontal_margin_small"
+        android:paddingRight="@dimen/activity_horizontal_margin_small"
+        android:paddingTop="@dimen/activity_vertical_margin_small"
+        android:text="The citizen who thinks he sees that the commonwealth&apos;s political th&apos;s political"
+        android:textSize="14sp" />
 
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutLeftLine"
+        android:layout_width="4dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/blue"
+        android:orientation="vertical" >
     </RelativeLayout>
 
 </RelativeLayout>
