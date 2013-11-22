@@ -9,11 +9,42 @@
     android:paddingTop="@dimen/activity_vertical_margin_small"
     tools:context=".QuotesListActivity" >
 
+    <RelativeLayout
+        android:id="@+id/relativeLayoutAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin_small"
+        android:background="@color/white" >
+
+        <ImageView
+            android:id="@+id/ivAuthorQuotesListIcon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/avatar" />
+
+        <TextView
+            android:id="@+id/tvAuthorInQuotesList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_toLeftOf="@+id/ivAuthorQuotesListIcon"
+            android:gravity="center_vertical"
+            android:text="Example author"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/lvQuotes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_below="@id/relativeLayoutAuthor"
         android:background="@color/white"
         android:divider="@color/lightgray"
         android:dividerHeight="4px" >

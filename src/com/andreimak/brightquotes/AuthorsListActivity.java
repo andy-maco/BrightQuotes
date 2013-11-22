@@ -22,7 +22,9 @@ import android.widget.ListView;
  */
 public class AuthorsListActivity extends ActionBarActivity {
 
-	protected static final String TAG_AUTHOR = "tag author";
+	/* Constant keys for intents */
+	protected static final String TAG_AUTHOR = "com.andreimak.brightquotes.TAG_AUTHOR";
+	protected static final String TAG_AUTHOR_IMAGE = "com.andreimak.brightquotes.TAG_AUTHOR_IMAGE";
 
 	protected static final String JSON_URL = "bright_quotes.json";
 	protected static final String JSON_AUTHORS_ARRAY = "authors";
@@ -58,12 +60,15 @@ public class AuthorsListActivity extends ActionBarActivity {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 
-				String pickedAuthor = mArrayAdapter.getItem(position).get(
+				String mPickedAuthor = mArrayAdapter.getItem(position).get(
 						KEY_AUTHOR_NAME);
+				String mPickedAuthorImage = mArrayAdapter.getItem(position).get(
+						KEY_AUTHOR_IMAGE);
 
 				Intent mIntent = new Intent(getApplicationContext(),
 						QuotesListActivity.class);
-				mIntent.putExtra(TAG_AUTHOR, pickedAuthor);
+				mIntent.putExtra(TAG_AUTHOR, mPickedAuthor);
+				mIntent.putExtra(TAG_AUTHOR_IMAGE, mPickedAuthorImage);
 				startActivity(mIntent);
 			}
 		});

@@ -1010,7 +1010,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f060045;
-        public static final int RelativeLayoutLeftLine=0x7f06004d;
+        public static final int RelativeLayoutLeftLine=0x7f060050;
         public static final int action_bar=0x7f06001a;
         public static final int action_bar_activity_content=0x7f060015;
         public static final int action_bar_container=0x7f060019;
@@ -1024,7 +1024,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f06002f;
         public static final int action_mode_bar_stub=0x7f06002e;
         public static final int action_mode_close_button=0x7f060022;
-        public static final int action_settings=0x7f06004e;
+        public static final int action_settings=0x7f060051;
         public static final int activity_chooser_view_content=0x7f060023;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1043,13 +1043,14 @@ containing a value of this type.
         public static final int icon=0x7f060028;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060025;
-        public static final int ivIcon=0x7f060047;
+        public static final int ivAuthorQuotesListIcon=0x7f060047;
+        public static final int ivIcon=0x7f06004a;
         public static final int left_icon=0x7f060031;
         public static final int linearLayout1=0x7f060043;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060027;
         public static final int lvAuthors=0x7f060042;
-        public static final int lvQuotes=0x7f060046;
+        public static final int lvQuotes=0x7f060049;
         public static final int middle=0x7f060012;
         public static final int never=0x7f060009;
         public static final int none=0x7f060010;
@@ -1057,6 +1058,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f060034;
         public static final int progress_horizontal=0x7f060035;
         public static final int radio=0x7f06002d;
+        public static final int relativeLayoutAuthor=0x7f060046;
         public static final int right_container=0x7f060032;
         public static final int right_icon=0x7f060033;
         public static final int search_badge=0x7f060038;
@@ -1079,12 +1081,13 @@ containing a value of this type.
         public static final int title=0x7f060029;
         public static final int title_container=0x7f060030;
         public static final int top_action_bar=0x7f06001e;
-        public static final int tvFirstLine=0x7f060049;
-        public static final int tvQuoteLine=0x7f06004c;
-        public static final int tvQuoteNum=0x7f06004a;
-        public static final int tvQuoteTagLine=0x7f06004b;
+        public static final int tvAuthorInQuotesList=0x7f060048;
+        public static final int tvFirstLine=0x7f06004c;
+        public static final int tvQuoteLine=0x7f06004f;
+        public static final int tvQuoteNum=0x7f06004d;
+        public static final int tvQuoteTagLine=0x7f06004e;
         public static final int tvQuoteText=0x7f060044;
-        public static final int tvSecondLine=0x7f060048;
+        public static final int tvSecondLine=0x7f06004b;
         public static final int up=0x7f06001f;
         public static final int useLogo=0x7f060003;
         public static final int withText=0x7f06000c;

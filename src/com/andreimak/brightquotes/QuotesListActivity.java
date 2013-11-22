@@ -1,5 +1,7 @@
 package com.andreimak.brightquotes;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,18 +11,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Display list of quotes by selected author
@@ -36,7 +42,7 @@ public class QuotesListActivity extends ActionBarActivity {
 	List<HashMap<String, String>> qList = new ArrayList<HashMap<String, String>>();
 
 	private String mPickedAuthor;
-	private int mPickedAuthorArray;
+	private String mPickedAuthorImage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,7 @@ public class QuotesListActivity extends ActionBarActivity {
 		//Read author from parent intent
 		Intent mIntentStarted = getIntent();
 		mPickedAuthor = mIntentStarted.getStringExtra(AuthorsListActivity.TAG_AUTHOR);
+		mPickedAuthorImage = mIntentStarted.getStringExtra(AuthorsListActivity.TAG_AUTHOR_IMAGE);
 		
 		qList = getQuotes(AuthorsListActivity.JSON_URL, R.raw.bright_quotes, mPickedAuthor);
 		
@@ -52,8 +59,18 @@ public class QuotesListActivity extends ActionBarActivity {
 				qList);
 		
 		setContentView(R.layout.activity_quotes_list);
-		ListView mListView = (ListView)findViewById(R.id.lvQuotes);
 		
+		TextView tv = (TextView)findViewById(R.id.tvAuthorInQuotesList);
+		tv.setText(mPickedAuthor);
+		
+		ImageView iv = (ImageView)findViewById(R.id.ivAuthorQuotesListIcon);
+		if (mPickedAuthorImage.equals("none")) {
+			iv.setImageResource(R.drawable.avatar);
+		} else {
+			iv.setImageDrawable(getImageFromAsset(getApplicationContext(), mPickedAuthorImage));
+		}
+		
+		ListView mListView = (ListView)findViewById(R.id.lvQuotes);
 		// Set the ArrayAdapter as the ListView's adapter.
 		mListView.setAdapter(mArrayAdapter);
 		mListView.setTextFilterEnabled(true);
@@ -211,6 +228,32 @@ public class QuotesListActivity extends ActionBarActivity {
 		HashMap<String, String> item = new HashMap<String, String>();
 		item.put(KEY_QUOTE_TEXT, text);
 		return item;
+	}
+	
+	/**
+	 * Method load images from assets (input imageUrl like "image.jpg")
+	 * 
+	 * http://xjaphx.wordpress.com/2011/10/02/store-and-use-files-in-assets/
+	 * 
+	 * @param context
+	 * @param imageUrl
+	 * @return
+	 */
+	private Drawable getImageFromAsset(Context context, String imageUrl) {
+		Drawable mDrawable = null;
+		try {
+			AssetManager mAssetManager = context.getAssets();
+			// get input stream
+			InputStream is = mAssetManager.open(imageUrl);
+			// load image as Drawable
+			mDrawable = Drawable.createFromStream(is, null);
+			is.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return mDrawable;
 	}
 
 }
