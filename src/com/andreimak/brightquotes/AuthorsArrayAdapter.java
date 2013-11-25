@@ -62,7 +62,7 @@ public class AuthorsArrayAdapter extends ArrayAdapter<HashMap<String, String>> {
 	}
 
 	/**
-	 * Method load images from assets (input imageUrl like "image.jpg")
+	 * Method load images from assets (input imageUrl like "folder/image.jpg")
 	 * 
 	 * http://xjaphx.wordpress.com/2011/10/02/store-and-use-files-in-assets/
 	 * 
@@ -71,6 +71,7 @@ public class AuthorsArrayAdapter extends ArrayAdapter<HashMap<String, String>> {
 	 * @return
 	 */
 	private Drawable getImageFromAsset(Context context, String imageUrl) {
+		//TODO: pull out into separate helper class
 		Drawable mDrawable = null;
 		try {
 			AssetManager mAssetManager = context.getAssets();

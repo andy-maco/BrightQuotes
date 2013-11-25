@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -103,11 +104,13 @@ public class QuotesListActivity extends ActionBarActivity {
 			public void onItemClick(AdapterView<?> parent, View v,
 					int position, long id) {
 
-				String pickedQuote = mArrayAdapter.getItem(position).get(KEY_QUOTE_TEXT);
+				String pickedQuote = mArrayAdapter.getItem(position).get(KEY_QUOTE_TEXT);	
 
 				Intent mIntent = new Intent(getApplicationContext(),
 						QuoteActivity.class);
 				mIntent.putExtra(TAG_QUOTE, pickedQuote);
+				mIntent.putExtra(AuthorsListActivity.TAG_AUTHOR, mPickedAuthor);
+				mIntent.putExtra(AuthorsListActivity.TAG_AUTHOR_IMAGE, mPickedAuthorImage);
 				startActivity(mIntent);
 
 			}
@@ -231,7 +234,7 @@ public class QuotesListActivity extends ActionBarActivity {
 	}
 	
 	/**
-	 * Method load images from assets (input imageUrl like "image.jpg")
+	 * Method load images from assets (input imageUrl like "folder/image.jpg")
 	 * 
 	 * http://xjaphx.wordpress.com/2011/10/02/store-and-use-files-in-assets/
 	 * 
@@ -240,6 +243,7 @@ public class QuotesListActivity extends ActionBarActivity {
 	 * @return
 	 */
 	private Drawable getImageFromAsset(Context context, String imageUrl) {
+		//TODO: pull out into separate helper class
 		Drawable mDrawable = null;
 		try {
 			AssetManager mAssetManager = context.getAssets();

@@ -1,13 +1,21 @@
 package com.andreimak.brightquotes;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -16,6 +24,8 @@ import android.widget.TextView;
 public class QuoteActivity extends ActionBarActivity {
 	
 	private String mPickedQuote;
+	private String mPickedAuthor;
+	private String mPickedAuthorImage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +36,22 @@ public class QuoteActivity extends ActionBarActivity {
 		
 		Intent mIntentStarted = getIntent();
 		mPickedQuote = mIntentStarted.getStringExtra(QuotesListActivity.TAG_QUOTE);
+		mPickedAuthor = mIntentStarted.getStringExtra(AuthorsListActivity.TAG_AUTHOR);
+		mPickedAuthorImage = mIntentStarted.getStringExtra(AuthorsListActivity.TAG_AUTHOR_IMAGE);
 		
 		TextView mTextViewQouteText = (TextView) findViewById(R.id.tvQuoteText);
 		mTextViewQouteText.setText(mPickedQuote);
+		
+		TextView tv = (TextView)findViewById(R.id.tvAuthorQuoteName);
+		String emDash = Html.fromHtml("&mdash;").toString();
+		tv.setText(emDash + " " + mPickedAuthor);
+		
+		ImageView iv = (ImageView)findViewById(R.id.ivAuthorQuoteIcon);
+		if (mPickedAuthorImage.equals("none")) {
+			iv.setImageResource(R.drawable.avatar);
+		} else {
+			iv.setImageDrawable(getImageFromAsset(getApplicationContext(), mPickedAuthorImage));
+		}
 	}
 
 	/**
@@ -63,6 +86,33 @@ public class QuoteActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	/**
+	 * Method load images from assets (input imageUrl like "folder/image.jpg")
+	 * 
+	 * http://xjaphx.wordpress.com/2011/10/02/store-and-use-files-in-assets/
+	 * 
+	 * @param context
+	 * @param imageUrl
+	 * @return
+	 */
+	private Drawable getImageFromAsset(Context context, String imageUrl) {
+		//TODO: pull out into separate helper class
+		Drawable mDrawable = null;
+		try {
+			AssetManager mAssetManager = context.getAssets();
+			// get input stream
+			InputStream is = mAssetManager.open(imageUrl);
+			// load image as Drawable
+			mDrawable = Drawable.createFromStream(is, null);
+			is.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return mDrawable;
 	}
 
 }

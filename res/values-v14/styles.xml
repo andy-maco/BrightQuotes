@@ -7,6 +7,11 @@
     -->
     <style name="AppBaseTheme" parent="@style/Theme.AppCompat.Light">
         <!-- API 14 theme customizations can go here. -->
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+    
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:background">@drawable/ab_bq</item>
     </style>
 
 </resources>

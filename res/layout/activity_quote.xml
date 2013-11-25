@@ -8,38 +8,56 @@
     android:paddingRight="@dimen/activity_horizontal_margin_small"
     tools:context=".QuoteActivity" >
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
+    <TextView
+        android:id="@+id/tvQuoteText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@color/white"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/tvQuoteText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.15"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:text="@string/empty_view"
-            android:textSize="16sp" />
-
-    </LinearLayout>
+        android:lineSpacingMultiplier="1.15"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:text="@string/empty_view"
+        android:textSize="16sp" />
 
     <RelativeLayout
-        android:id="@+id/RelativeLayout1"
-        android:layout_width="4dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/linearLayout1"
-        android:layout_alignBottom="@+id/linearLayout1"
-        android:layout_alignLeft="@+id/linearLayout1"
-        android:background="@color/darkblue"
-        android:orientation="vertical" >
+        android:id="@+id/RelativeLayoutLeftBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/tvQuoteText"
+        android:background="@color/darkblue" >
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/relativeLayoutAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/RelativeLayoutLeftBar"
+        android:layout_marginTop="@dimen/activity_vertical_margin_small"
+        android:background="@color/white" >
+
+        <ImageView
+            android:id="@+id/ivAuthorQuoteIcon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/avatar" />
+
+        <TextView
+            android:id="@+id/tvAuthorQuoteName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_toLeftOf="@+id/ivAuthorQuoteIcon"
+            android:gravity="center_vertical"
+            android:text="- Example author"
+            android:textSize="16sp" />
     </RelativeLayout>
 
 </RelativeLayout>
