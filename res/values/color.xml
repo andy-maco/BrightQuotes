@@ -18,4 +18,5 @@
  <color name="black">#000000</color>
  <color name="lightgray">#cccccc</color>
  <color name="darkblue">#336699</color>
+ <color name="transparent">#00000000</color>
 </resources>

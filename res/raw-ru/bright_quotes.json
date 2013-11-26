@@ -22,6 +22,14 @@
             ]
         },
         {
+            "authorName": "Джордж Бернард Шоу",
+            "image": "img/georgebernardshaw.jpg",
+            "quotes": [
+                "One man that has a mind and knows it can always beat ten men who haven't and don't.",
+                "People are always blaming circumstances for what they are. I don't believe in circumstances. The people who get on in this world are the people who get up and look for the circumstances they want, and, if they can't find them, make them."
+            ]
+        },
+        {
             "authorName": "Оскар Уайлд",
             "image": "img/oscarwilde.jpg",
             "quotes": [
@@ -37,14 +45,14 @@
             ]
         },
         {
-            "authorName": "Wayne Gretzky",
+            "authorName": "Уэйн Гретцки",
             "image": "img/waynegretzky.jpg",
             "quotes": [
                 "You miss 100% of the shots you don't take."
             ]
         },
         {
-            "authorName": "Winston Churchill",
+            "authorName": "Уинстон Черчилль",
             "image": "img/winstonchurchill.jpg",
             "quotes": [
                 "If you have ten thousand regulations, you destroy all respect for the law."

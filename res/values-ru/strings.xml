@@ -7,5 +7,8 @@
     <string name="title_activity_quote">Bright Quotes</string>
     <string name="title_activity_quotes_list">Bright Quotes</string>
     <string name="authors_list_quotes_quantity">Цитат:</string>
+    <string name="menu_about">О программе</string>
+    <string name="title_activity_about">О программе</string>
+    <string name="about_app_version">Версия</string>
 
 </resources>

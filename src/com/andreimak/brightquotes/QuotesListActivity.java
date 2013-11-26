@@ -10,6 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.andreimak.brightquotes.adapters.QuotesArrayAdapter;
+import com.andreimak.brightquotes.parsers.JSONParser;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -19,7 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
-import android.text.Html;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,13 +40,16 @@ public class QuotesListActivity extends ActionBarActivity {
 	protected final static String TAG_QUOTE = "tag quote";
 	
 	/* Constant keys for HashMap */
-	protected static final String KEY_QUOTE_TEXT = "quote_text";
+	public static final String KEY_QUOTE_TEXT = "quote_text";
 
 
 	List<HashMap<String, String>> qList = new ArrayList<HashMap<String, String>>();
 
 	private String mPickedAuthor;
 	private String mPickedAuthorImage;
+	
+	/* Menu used for hardware button behavior onKeyUp */
+	private Menu mainMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -134,10 +140,14 @@ public class QuotesListActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.quotes_list, menu);
+		getMenuInflater().inflate(R.menu.quotes_list_menu, menu);
+		mainMenu = menu;
 		return true;
 	}
-
+	
+	/**
+	 * Menu action bar handling
+	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -151,10 +161,36 @@ public class QuotesListActivity extends ActionBarActivity {
 			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+		case R.id.submenu_about:
+			Intent mIntentAbout = new Intent(getApplicationContext(),
+					AboutActivity.class);
+			startActivity(mIntentAbout);
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
+	/**
+	 * Menu hardware button open action bar menu
+	 * 
+	 * http://stackoverflow.com/questions/12277262/
+	 * opening-submenu-in-action-bar-on-hardware-menu-button-click
+	 */
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		if (event.getAction() == KeyEvent.ACTION_UP) {
+			switch (keyCode) {
+			case KeyEvent.KEYCODE_MENU:
+
+				mainMenu.performIdentifierAction(R.id.menu_more, 0);
+				// Log.d("Menu", "menu button pressed");
+				return true;
+			}
+
+		}
+		return super.onKeyUp(keyCode, event);
+	}
+
 	/**
 	 * Method for read JSON and save into List of HashMaps
 	 * 

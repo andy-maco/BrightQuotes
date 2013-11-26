@@ -13,19 +13,23 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Display single quote selected from quotes list activity 
+ * Display single quote selected from quotes list activity
  */
 public class QuoteActivity extends ActionBarActivity {
-	
+
 	private String mPickedQuote;
 	private String mPickedAuthor;
 	private String mPickedAuthorImage;
+
+	/* Menu used for hardware button behavior onKeyUp */
+	private Menu mainMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,24 +37,31 @@ public class QuoteActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_quote);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		
+
 		Intent mIntentStarted = getIntent();
-		mPickedQuote = mIntentStarted.getStringExtra(QuotesListActivity.TAG_QUOTE);
-		mPickedAuthor = mIntentStarted.getStringExtra(AuthorsListActivity.TAG_AUTHOR);
-		mPickedAuthorImage = mIntentStarted.getStringExtra(AuthorsListActivity.TAG_AUTHOR_IMAGE);
-		
+		mPickedQuote = mIntentStarted
+				.getStringExtra(QuotesListActivity.TAG_QUOTE);
+		mPickedAuthor = mIntentStarted
+				.getStringExtra(AuthorsListActivity.TAG_AUTHOR);
+		mPickedAuthorImage = mIntentStarted
+				.getStringExtra(AuthorsListActivity.TAG_AUTHOR_IMAGE);
+
 		TextView mTextViewQouteText = (TextView) findViewById(R.id.tvQuoteText);
-		mTextViewQouteText.setText(mPickedQuote);
-		
-		TextView tv = (TextView)findViewById(R.id.tvAuthorQuoteName);
+		String curlyLeftDoubleQuote = Html.fromHtml("&ldquo;").toString();
+		String curlyRightDoubleQuote = Html.fromHtml("&rdquo;").toString();
+		mTextViewQouteText.setText(curlyLeftDoubleQuote + mPickedQuote
+				+ curlyRightDoubleQuote);
+
+		TextView tv = (TextView) findViewById(R.id.tvAuthorQuoteName);
 		String emDash = Html.fromHtml("&mdash;").toString();
 		tv.setText(emDash + " " + mPickedAuthor);
-		
-		ImageView iv = (ImageView)findViewById(R.id.ivAuthorQuoteIcon);
+
+		ImageView iv = (ImageView) findViewById(R.id.ivAuthorQuoteIcon);
 		if (mPickedAuthorImage.equals("none")) {
 			iv.setImageResource(R.drawable.avatar);
 		} else {
-			iv.setImageDrawable(getImageFromAsset(getApplicationContext(), mPickedAuthorImage));
+			iv.setImageDrawable(getImageFromAsset(getApplicationContext(),
+					mPickedAuthorImage));
 		}
 	}
 
@@ -67,7 +78,8 @@ public class QuoteActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.quote, menu);
+		getMenuInflater().inflate(R.menu.quote_menu, menu);
+		mainMenu = menu;
 		return true;
 	}
 
@@ -84,10 +96,36 @@ public class QuoteActivity extends ActionBarActivity {
 			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+		case R.id.submenu_about:
+			Intent mIntentAbout = new Intent(getApplicationContext(),
+					AboutActivity.class);
+			startActivity(mIntentAbout);
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 	
+	/**
+	 * Menu hardware button open action bar menu
+	 * 
+	 * http://stackoverflow.com/questions/12277262/
+	 * opening-submenu-in-action-bar-on-hardware-menu-button-click
+	 */
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		if (event.getAction() == KeyEvent.ACTION_UP) {
+			switch (keyCode) {
+			case KeyEvent.KEYCODE_MENU:
+
+				mainMenu.performIdentifierAction(R.id.menu_more, 0);
+				// Log.d("Menu", "menu button pressed");
+				return true;
+			}
+
+		}
+		return super.onKeyUp(keyCode, event);
+	}
+
 	/**
 	 * Method load images from assets (input imageUrl like "folder/image.jpg")
 	 * 
@@ -98,7 +136,7 @@ public class QuoteActivity extends ActionBarActivity {
 	 * @return
 	 */
 	private Drawable getImageFromAsset(Context context, String imageUrl) {
-		//TODO: pull out into separate helper class
+		// TODO: pull out into separate helper class
 		Drawable mDrawable = null;
 		try {
 			AssetManager mAssetManager = context.getAssets();

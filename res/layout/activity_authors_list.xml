@@ -3,10 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightgray"
-    android:paddingBottom="@dimen/activity_vertical_margin_small"
-    android:paddingLeft="@dimen/activity_horizontal_margin_small"
-    android:paddingRight="@dimen/activity_horizontal_margin_small"
-    android:paddingTop="@dimen/activity_vertical_margin_small"
     tools:context=".AuthorsListActivity" >
 
     <ListView
@@ -14,8 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:background="@color/white"
-        android:divider="@color/lightgray"
+        android:layout_marginBottom="@dimen/activity_vertical_margin_small"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin_small"
+        android:layout_marginRight="@dimen/activity_horizontal_margin_small"
+        android:layout_marginTop="@dimen/activity_vertical_margin_small"
+        android:divider="@color/transparent"
         android:dividerHeight="4px" >
     </ListView>
 

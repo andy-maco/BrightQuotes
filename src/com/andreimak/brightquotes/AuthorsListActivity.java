@@ -8,10 +8,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.andreimak.brightquotes.adapters.AuthorsArrayAdapter;
+import com.andreimak.brightquotes.parsers.JSONParser;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -33,11 +38,14 @@ public class AuthorsListActivity extends ActionBarActivity {
 	protected static final String JSON_QUOTES = "quotes";
 
 	/* Constant keys for HashMap */
-	protected static final String KEY_AUTHOR_NAME = "author_name";
-	protected static final String KEY_AUTHOR_IMAGE = "author_image";
-	protected static final String KEY_QUOTES_QUANTITY = "quotes_quantity";
+	public static final String KEY_AUTHOR_NAME = "author_name";
+	public static final String KEY_AUTHOR_IMAGE = "author_image";
+	public static final String KEY_QUOTES_QUANTITY = "quotes_quantity";
 
 	List<HashMap<String, String>> qAuthors = new ArrayList<HashMap<String, String>>();
+	
+	/* Menu used for hardware button behavior onKeyUp */
+	private Menu mainMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +70,8 @@ public class AuthorsListActivity extends ActionBarActivity {
 
 				String mPickedAuthor = mArrayAdapter.getItem(position).get(
 						KEY_AUTHOR_NAME);
-				String mPickedAuthorImage = mArrayAdapter.getItem(position).get(
-						KEY_AUTHOR_IMAGE);
+				String mPickedAuthorImage = mArrayAdapter.getItem(position)
+						.get(KEY_AUTHOR_IMAGE);
 
 				Intent mIntent = new Intent(getApplicationContext(),
 						QuotesListActivity.class);
@@ -77,8 +85,47 @@ public class AuthorsListActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.bright_quotes, menu);
+		getMenuInflater().inflate(R.menu.authors_list_menu, menu);
+		mainMenu = menu;
 		return true;
+	}
+	
+	/**
+	 * Menu action bar handling
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.submenu_about:
+			Intent mIntentAbout = new Intent(getApplicationContext(),
+					AboutActivity.class);
+			startActivity(mIntentAbout);
+			return true;
+		default:
+			return false;
+		}
+	}
+
+	/**
+	 * Menu hardware button open action bar menu
+	 * 
+	 * http://stackoverflow.com/questions/12277262/
+	 * opening-submenu-in-action-bar-on-hardware-menu-button-click
+	 */
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		if (event.getAction() == KeyEvent.ACTION_UP) {
+			switch (keyCode) {
+			case KeyEvent.KEYCODE_MENU:
+
+				mainMenu.performIdentifierAction(R.id.menu_more, 0);
+				// Log.d("Menu", "menu button pressed");
+				return true;
+			}
+
+		}
+		return super.onKeyUp(keyCode, event);
 	}
 
 	/**
@@ -115,7 +162,8 @@ public class AuthorsListActivity extends ActionBarActivity {
 
 				JSONArray subArray = oneObject.getJSONArray(JSON_QUOTES);
 
-				mAuthorsList.add(putData(oneObject.getString(JSON_AUTHOR),
+				mAuthorsList
+						.add(putData(oneObject.getString(JSON_AUTHOR),
 								oneObject.getString(JSON_IMAGE),
 								"" + subArray.length()));
 

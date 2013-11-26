@@ -8,13 +8,21 @@
     android:paddingRight="@dimen/activity_horizontal_margin_small"
     tools:context=".QuoteActivity" >
 
+    <View
+        android:id="@+id/vQuoteUpperBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/darkblue" />
+
     <TextView
         android:id="@+id/tvQuoteText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@id/vQuoteUpperBar"
         android:background="@color/white"
-        android:lineSpacingMultiplier="1.15"
+        android:lineSpacingMultiplier="1.25"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -23,20 +31,12 @@
         android:textSize="16sp" />
 
     <RelativeLayout
-        android:id="@+id/RelativeLayoutLeftBar"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@id/tvQuoteText"
-        android:background="@color/darkblue" >
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/relativeLayoutAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/RelativeLayoutLeftBar"
+        android:layout_below="@+id/tvQuoteText"
         android:layout_marginTop="@dimen/activity_vertical_margin_small"
         android:background="@color/white" >
 
